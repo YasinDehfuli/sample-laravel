@@ -1,0 +1,20 @@
+// Fonts
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+@import "vazirmatn/Vazirmatn-font-face.css";
+@import "quill/dist/quill.snow.css";
+
+*{
+    font-family: 'vazirmatn',sans-serif;
+}
+body{
+    direction: rtl;
+}
+.usual-text{
+    white-space: pre-line   ;
+    line-height: 2em;
+}
