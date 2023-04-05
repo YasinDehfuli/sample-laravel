@@ -15,6 +15,9 @@ class CommentController extends Controller
         $c->name = $request->name;
         $c->email = $request->email;
         $c->text = $request->text;
+        if ($request->has("parent_id") && $request->input("parent_id") != null){
+            $c->parent_id = $request->input("parent_id");
+        }
         $c->commentable_id = $request->id;
         switch ($request->type){
             case 'post':

@@ -9,6 +9,11 @@
         <p class="usual-text">
             {{$post->body}}
         </p>
+        <div>
+            @foreach($post->comments as $comment)
+                @include('component.comment',['comment' => $comment])
+            @endforeach
+        </div>
         @include('component.err')
         <form action="{{route('comment.store')}}" method="post">
             @csrf
@@ -30,6 +35,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="message">
                     {{__('Comment')}}
@@ -39,6 +45,7 @@
             </div>
             <input type="hidden" name="type" value="post" >
             <input type="hidden" name="id" value="{{$post->id}}" >
+            <input type="hidden" id="parent" name="parent_id" value="">
             <button class="btn btn-primary mt-3">
                 {{__("Send Comment")}}
             </button>

@@ -32,5 +32,12 @@ window.addEventListener('load',function () {
         $(".currency").keyup(function () {
             $(this).val(commafy(uncomma($(this).val())));
         });
+
+        $(".reply").click(function () {
+            $("#parent").val($(this).data('id'));
+            $("#message").focus();
+        })
     });
 });
+
+
