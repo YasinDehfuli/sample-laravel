@@ -60,7 +60,15 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+        if (auth()->check()){
+            return $this->morphMany(Comment::class, 'commentable')
+                ->whereNull('parent_id');
+        }else{
+            return $this->morphMany(Comment::class, 'commentable')
+                ->whereNull('parent_id')
+                ->where('status','ACCEPT');
+        }
+
     }
 
     public function getSlugOptions() : SlugOptions

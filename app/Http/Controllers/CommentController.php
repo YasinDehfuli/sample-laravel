@@ -33,4 +33,13 @@ class CommentController extends Controller
         return redirect()->back()->with(['message' => 'دمت گرم کامنتت اومد']);
     }
 
+    public function updateStatus(Comment $comment,$status){
+        if (!auth()->check()){
+            return abort(403);
+        }
+        $comment->status = $status;
+        $comment->save();
+        return redirect()->back()->with(['message' => 'تایید یا رد شد']);
+    }
+
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->unsignedBigInteger('parent_id')->default(null)->nullable();
             $table->morphs('commentable');
+            $table->enum('status',['PENDING','REJECT','ACCEPT'])->default('PENDING');
             $table->timestamps();
         });
     }
