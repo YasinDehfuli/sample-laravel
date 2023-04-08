@@ -7,6 +7,7 @@
 @import 'bootstrap/scss/bootstrap';
 @import "vazirmatn/Vazirmatn-font-face.css";
 @import "quill/dist/quill.snow.css";
+@import "@fortawesome/fontawesome-free/css/all.css";
 
 *{
     font-family: 'vazirmatn',sans-serif;
@@ -17,4 +18,7 @@ body{
 .usual-text{
     white-space: pre-line   ;
     line-height: 2em;
+}
+.alert-comment{
+    background: #00000022;
 }
