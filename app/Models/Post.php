@@ -31,6 +31,15 @@ use Spatie\Sluggable\SlugOptions;
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereView($value)
  * @mixin \Eloquent
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|Post onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Post withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Post withoutTrashed()
+ * @property int $category_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCategoryId($value)
  */
 class Post extends Model
 {
@@ -50,6 +59,24 @@ class Post extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+
+    public function comments()
+    {
+        if (auth()->check()){
+            return $this->morphMany(Comment::class, 'commentable')
+                ->whereNull('parent_id');
+        }else{
+            return $this->morphMany(Comment::class, 'commentable')
+                ->whereNull('parent_id')
+                ->where('status','ACCEPT');
+        }
+
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
     public function getSlugOptions() : SlugOptions

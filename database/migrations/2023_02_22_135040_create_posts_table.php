@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -20,8 +21,16 @@ return new class extends Migration
             $table->text('body');
             $table->unsignedInteger('view')->default(0);
             $table->string('image')->nullable()->default(null);
+            $table->unsignedBigInteger('category_id')
+                ->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
+
         });
     }
 

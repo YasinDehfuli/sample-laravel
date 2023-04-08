@@ -41,6 +41,14 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @mixin \Eloquent
  * @property string $mobile
  * @method static \Illuminate\Database\Eloquent\Builder|User whereMobile($value)
+ * @property string|null $dob
+ * @property int $credit
+ * @property int $vip
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|Media[] $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCredit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDob($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereVip($value)
  */
 class User extends Authenticatable  implements HasMedia
 {

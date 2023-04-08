@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostSaveRequest;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -52,7 +53,8 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('post.postForm');
+        $cats = Category::all();
+        return view('post.postForm',compact('cats'));
     }
 
     /**
@@ -90,7 +92,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
-        return view('post.postForm', compact('post'));
+        $cats = Category::all();
+        return view('post.postForm', compact('post','cats'));
     }
 
     /**

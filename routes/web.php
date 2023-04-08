@@ -77,4 +77,12 @@ Route::prefix('car')->name('car.')->group(
     }
 );
 
-Route::post('/commment',[\App\Http\Controllers\CommentController::class,'store'])->name('comment.store');
+Route::post('/commment',[\App\Http\Controllers\CommentController::class,'store'])
+    ->name('comment.store');
+Route::get('/comment/status/{comment}/{status}',[\App\Http\Controllers\CommentController::class
+    ,'updateStatus'])->name('comment.status');
+
+Route::get('/cat/{category}',
+    [\App\Http\Controllers\CategoryController::class,'show'])->name('cat.show');
+
+Route::get('/test/regex',[\App\Http\Controllers\CommentController::class,'test'])->name('test.regex');

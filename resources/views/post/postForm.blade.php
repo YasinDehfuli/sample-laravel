@@ -37,7 +37,18 @@
                         <textarea rows="10" name="body" class="form-control @error('body') is-invalid @enderror" placeholder="{{__('Text')}}"  >{{old('body',$post->body??null)}}</textarea>
                     </div>
                 </div>
-                <div class="col-md-12 mt-3">
+                <div class="col-md-6 mt-3">
+                    <div class="form-group">
+                        <label for="cat">
+                            {{__('Category')}}
+                        </label>
+                        <select name="category_id" id="cat" class="form-control @error('category_id') is-invalid @enderror"   >
+                            @foreach($cats as $cat )
+                                <option value="{{ $cat->id }}"  @if (old('category_id',$post->category_id??null) == $cat->id ) selected @endif > {{$cat->title}} </option>
+                            @endforeach
+                        </select>			 </div>
+                </div>
+                <div class="col-md-6 mt-3">
                     <div class="form-group">
                         <label for="img">
                             {{__('Image')}}

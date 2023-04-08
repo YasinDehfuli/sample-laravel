@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,8 @@ class PostFactory extends Factory
             'title' => $this->faker->realText(64),
             'slug' => $this->faker->unique()->realText(60),
             'body' => $this->faker->realText(900),
+            'category_id'=> Category::inRandomOrder()
+                ->limit(1)->first()->id,
             'view' => rand(0, 1000),
         ];
     }
