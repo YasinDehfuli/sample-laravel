@@ -73,6 +73,7 @@ class Post extends Model
                 ->where('status','ACCEPT');
         }
 
+//        Post::onlyTrashed()
     }
 
     public function category(){
