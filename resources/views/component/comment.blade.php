@@ -1,5 +1,5 @@
 <div class="alert alert-comment">
-    <img src="https://www.gravatar.com/avatar/{{md5($comment->email)}}?s=128&d=identicon&r=PG" alt="">
+    <img src="https://www.gravatar.com/avatar/{{md5($comment->email)}}?s=128&d=identicon&r=PG" class="mb-2" alt="">
     <b>
         {{$comment->name}}
     </b>
@@ -7,7 +7,7 @@
     :
     {{$comment->text}}
     <i>
-        {{$comment->created_at->diffForHumans()}}
+        {{$comment->created_at->diffForHumans()}} ({{$comment->children()->count()}})
     </i>
     @foreach($comment->children as $comment)
         @include('component.comment',['comment' => $comment])
