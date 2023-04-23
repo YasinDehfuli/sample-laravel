@@ -15,9 +15,45 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/about',function (){
-    echo 'about';
+    echo 'about :))))';
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::prefix('v1')->name('v1.')->group(
+    function () {
+        // welcome api
+        Route::get('/',function (){
+           return [
+               'msg' => 'welcome to api version 1',
+               'urls' => [
+                   config('app.url') . '/api/v1/about',
+                   config('app.url') . '/api/v1/posts',
+               ],
+           ] ;
+        });
+        Route::get('/about',function (){
+           return [
+              'msg' => 'Developed by Amir Rimaro & Yacin',
+              'deverlopers' => [
+                  'Amir' => [
+                      'nickname' => 'Rimaro',
+                      'email' => 'amir@mj.ir'
+                  ],
+                  'Yacin' => [
+                      'nickname' => 'Nisay',
+                      'email' => 'yacin@mj.ir'
+                  ]
+              ]
+           ] ;
+        }); // about
+        // posts
+        Route::get('posts',[\App\Http\Controllers\API\PostApiController::class,'index'])->name('posts');
+});
+
+Route::prefix('v1.1')->name('v1.1.')->group(
+    function () {
 });
