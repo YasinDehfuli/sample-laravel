@@ -12,7 +12,7 @@
 
     <!-- Fonts -->
 
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+{{--    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>--}}
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
