@@ -17,6 +17,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'under' => env('UNDER_CONSTRUCTION', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
